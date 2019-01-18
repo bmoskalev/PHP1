@@ -7,14 +7,18 @@
  * @param $pathMin
  * @param $pathMax
  */
-function render($pathMin, $pathMax)
+function render()
 {
-    $images = array_splice(scandir($pathMax), 2);
+    $conn = mysqli_connect(HOST, USER, PASS, DB);
+    $sql = "SELECT * FROM images";
+    $images = queryAll($conn, $sql);
     $result = "";
     foreach ($images as $image) {
-        if (create_thumbnail("$pathMax$image", "$pathMin$image", 200, 200))
-            $result .= "<img src =\"$pathMin$image\" data-full_image_url=\"$pathMax$image\" alt=\"$image\">";
+        $srcMax = $image['bigPath'] . $image['bigFileName'];
+        $srcSmall = $image['smallPath'] . $image['smallFileName'];
+        $result .= "<img src =\"$srcSmall\" data-full_image_url=\"$srcMax\" alt=\"$image\">";
     }
+    mysqli_close($conn);
     echo $result;
 }
 

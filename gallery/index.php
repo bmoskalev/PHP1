@@ -1,6 +1,11 @@
 <?php
-define("MIN", "img/min/");
-define("MAX", "img/max/");
+define('MIN', 'img/min/');
+define('MAX', 'img/max/');
+define('HOST', 'localhost');
+define('USER', 'root');
+define('PASS', '');
+define('DB', 'gallery');
+require_once "db.php";
 require_once "render.php";
 require_once "uploadImg.php";
 ?>
@@ -66,13 +71,12 @@ require_once "uploadImg.php";
         <img src="images/min/4.jpg" data-full_image_url="images/max/4.jpg" alt="Картинка4">-->
     <?php
 
-    render(MIN, MAX);
+    render();
 
     ?>
 </div>
 <form class="upload-form" method="post" action= "" enctype="multipart/form-data" >
     <input type="file" name="myfile"> <input type="submit" value="Загрузить файл">
-
 </form>
 <!--
 <div class="galleryWrapper">
