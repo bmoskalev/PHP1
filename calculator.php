@@ -8,34 +8,43 @@
     <title>Document</title>
 </head>
 <body>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Москалевы
+ * Date: 21.01.2019
+ * Time: 23:21
+ */
+$num1=$_POST['number1'];
+$num2=$_POST['number2'];
+$oper=$_POST['oper'];
+switch ($oper) {
+    case '+':
+        $result = $num1 + $num2;
+        break;
+    case '-':
+        $result = $num1 - $num2;
+        break;
+    case '*':
+        $result = $num1 * $num2;
+        break;
+    case '/':
+        if ($num2==0){
+            echo "На ноль делить нельзя";
+        } else{
+            $result = $num1 + $num2;
+        }
+        break;
+}
+?>
 <form action="#" method="post">
     <input type="text" name="number1" value="0">
     <input type="text" name="number2" value="0">
-    <input type="submit" name="add" value="+">
-    <input type="submit" name="reduce" value="-">
-    <input type="submit" name="multiply" value="*">
-    <input type="submit" name="divide" value="/">
-    <?php
-    /**
-     * Created by PhpStorm.
-     * User: Москалевы
-     * Date: 21.01.2019
-     * Time: 23:21
-     */
-    if (isset($_POST['reduce'])){
-        $result=$_POST['number1']-$_POST['number2'];
-    }
-    if (isset($_POST['multiply'])){
-        $result=$_POST['number1']*$_POST['number2'];
-    }
-    if (isset($_POST['add'])){
-        $result=$_POST['number1']+$_POST['number2'];
-    }
-    if (isset($_POST['divide'])){
-        $result=$_POST['number1']/$_POST['number2'];
-    }
-    ?>
-    <div class="result">Результат: <?=$result;?></div>
+    <input type="submit" name="oper" value="+">
+    <input type="submit" name="oper" value="-">
+    <input type="submit" name="oper" value="*">
+    <input type="submit" name="oper" value="/">
+    <div class="result">Результат: <?= $result; ?></div>
 </form>
 </body>
 </html>
